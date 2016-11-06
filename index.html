@@ -5,6 +5,7 @@
   <title>game101</title>
   <script src="https://aframe.io/releases/0.3.2/aframe.js"></script>
   <script src="vendor/fulltilt.min.js"></script>
+
   <script src="src/component/audioanalyser/build.js"></script>
   <script src="src/component/audioanalyser/audioanalyser-levels-scale.js"></script>
   <script src="src/component/audioanalyser/scale-y-color.js"></script>
@@ -12,6 +13,8 @@
   <script src="src/component/arrowManager.js"></script>
   <script src="src/component/track.js"></script>
   <script src="src/component/random_sky.js"></script>
+  <script src="src/component/collider-check.js"></script>
+  <script src="src/component/player.js"></script>
 </head>
 <body>
   <a-scene>
@@ -41,26 +44,29 @@
     <!-- Background. -->
     <a-sky random_sky="12"></a-sky>
 
-    <a-camera>
-      <a-cursor color="#2E3A87"></a-cursor>
-    </a-camera>
+		<a-entity id="camera"
+        class="camera"
+        position="0 1.7 5"
+			  camera player
+        look-controls>
+      <a-cursor color="#2E3A87">
+      </a-cursor>
+    </a-entity>
 
-    <a-entity arrow="color: blue; direction: UP" position="0 1 -10"></a-entity>
-    <a-entity id="track" track="foo">
-      <a-box id='segment1' color="#7F7" width="3" height="1" depth="100"
-             position="0 0 100">
+    <a-entity class="track" id="track" track="speed: 1">
+      <a-box id='segment1' color="#7F7" width="3" height="1" depth="100" position="0 0 100">
+        <a-entity position="0 1.7 -10" id="arrow-manager-1" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
         <a-box color="#7F7" width="1" height="10" depth="1"
                position="1.5 0 50">
         </a-box>
       </a-box>
-      <a-box id='segment2' color="#F77" width="3" height="1" depth="100"
-             position="0 0 0">
-        <a-box color="#F77" width="1" height="10" depth="1"
-               position="-1.5 0 50">
+      <a-box id='segment2' color="#F77" width="3" height="1" depth="100" position="0 0 0">
+        <a-entity position="0 1.7 -10" id="arrow-manager-2" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
+        <a-box color="#F77" width="1" height="10" depth="1" position="-1.5 0 50">
         </a-box>
       </a-box>
-      <a-box id='segment3' color="#77F" width="3" height="1" depth="100"
-             position="0 0 -100">
+      <a-box id='segment3' color="#77F" width="3" height="1" depth="100" position="0 0 -100">
+        <a-entity position="0 1.7 -10" id="arrow-manager-3" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
         <a-box color="#77F" width="1" height="10" depth="1"
                position="1.5 0 50">
         </a-box>
@@ -126,8 +132,6 @@
       </a-entity>
     </a-entity>
 
-    <a-entity position="0 2 -10" id="sampleArrow" arrow="color: blue; direction: UP"></a-entity>
-    <a-entity position="0 2 -10" id="arrow-manager" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
 
     <a-circle color="#333"
       opacity="0.8"
@@ -136,5 +140,6 @@
       roughness="1">
     </a-circle>
   </a-scene>
+  <script src="src/main.js"></script>
 </body>
 </html>

@@ -1,5 +1,11 @@
+
 AFRAME.registerComponent('track', {
-  schema: { type: "string" },
+  schema: {
+    speed: {
+      type: 'int',
+      default: 5,
+    },
+  },
 
   tick_segment: function(segment, z_translation) {
     if (segment.object3D.position.z > 100) {
@@ -23,7 +29,7 @@ AFRAME.registerComponent('track', {
   },
 
   tick: function(time, timeDelta) {
-    var z_translation = 0.05 * timeDelta;
+    const z_translation = this.data.speed/100 * timeDelta;
 
     this.tick_segment(this.el.querySelector('#segment1'), z_translation);
     this.tick_segment(this.el.querySelector('#segment2'), z_translation);
@@ -36,5 +42,12 @@ AFRAME.registerComponent('track', {
     this.tick_audio_bars(this.el.querySelector('#audio_bars1'), z_translation);
     this.tick_audio_bars(this.el.querySelector('#audio_bars2'), z_translation);
     this.tick_audio_bars(this.el.querySelector('#audio_bars3'), z_translation);
+  },
+
+  getSpeed() {
+    return this.data.speed;
+  },
+  setSpeed(speed) {
+    this.data.speed = speed;
   },
 });

@@ -1,5 +1,4 @@
-
-const ACC_THRESHOLD = 1;
+const ACC_THRESHOLD = 9;
 
 function getRandomColor() {
   return '#' + Math.floor(Math.random()*16777215).toString(16);
@@ -44,29 +43,64 @@ AFRAME.registerComponent('arrow-manager', {
       motionData.listen(() => {
         // Display calculated screen-adjusted devicemotion
         const screenAcc = motionData.getScreenAdjustedAcceleration() || {};
-        const screenAccG = motionData.getScreenAdjustedAccelerationIncludingGravity() || {};
-        const screenRotRate = motionData.getScreenAdjustedRotationRate() || {};
+        //const screenAccG = motionData.getScreenAdjustedAccelerationIncludingGravity() || {};
+        const moved = {};
 
-        console.info('ScreenAcc.X::', screenAcc.x);
-        console.info('ScreenAcc.Y::', screenAcc.y);
-        console.info('ScreenAcc.Z::', screenAcc.z);
+        if (screenAcc.x > ACC_THRESHOLD) {
+          moved.right = true;
+        } else if (screenAcc.x < ACC_THRESHOLD) {
+          moved.left = true;
+        }
 
-        console.info('ScreenAccG.X::', screenAccG.x);
-        console.info('ScreenAccG.Y::', screenAccG.y);
-        console.info('ScreenAccG.Z::', screenAccG.z);
+        if (screenAcc.y > ACC_THRESHOLD) {
+          moved.up  = true;
+        } else if (screenAcc.x < ACC_THRESHOLD) {
+          moved.down = true;
+        }
+
+        if (screenAcc.z > ACC_THRESHOLD) {
+          moved.backward = true;
+        } else if (screenAcc.x < ACC_THRESHOLD) {
+          moved.forward = true;
+        }
+
+        const currentArrow = this._arrows[0];
+        const direction = currentArrow.getDirection();
+
+        if (moved.up && direction === 'UP' ||
+            moved.down && direction === 'DOWN' ||
+            moved.left && direction === 'LEFT' ||
+            moved.right && direction === 'RIGHT'
+        ) {
+          currentArrow.clear();
+          this._arrows.pop();
+          // after clearing 1 arrow,
+          // increase speed
+          const elems = this.el.sceneEl.getElementsByClassName('track');
+          if (elems.track) {
+            elems.track.components.track.setSpeed(
+              elems.track.components.track.getSpeed() * 1.01
+            );
+          }
+        }
       });
     });
   },
 
   _spawnArrow() {
-    const entity = document.createElement('a-entity');
+    if (this._arrows.length) {
+      return;
+    }
 
+    const entity = document.createElement('a-entity');
     this._arrows.push(entity);
 
     const idCounter = this._arrows.length;
-
+    entity.classList.add('arrow');
+    entity.setAttribute('raycaster', 'objects: .camera; far: 0.05; near: 0.01; recursive: false');
     entity.setAttribute('arrow', getArrowSpawnParams());
-    entity.setAttribute('id', `entity-${idCounter}`);
+    entity.setAttribute('id', `arrow-${idCounter}`);
+    entity.setAttribute('collider-check', 'foo');
 
     this.el.appendChild(entity);
   },
@@ -74,7 +108,8 @@ AFRAME.registerComponent('arrow-manager', {
     if (!this._lastTime) {
       this._lastTime = time;
     }
-    if (this.data.enabled && (time - this._lastTime) > this.data.spawnFreqMs) {
+    if (this.data.enabled &&
+        (time - this._lastTime) > this.data.spawnFreqMs) {
       console.info('Generating arrow');
       this._lastTime = time;
       this._spawnArrow();
