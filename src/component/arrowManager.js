@@ -1,4 +1,5 @@
-const ACC_THRESHOLD = 9;
+const ACC_THRESHOLD = 3;
+const TIMEOUT_MS = 1.5e3;
 
 function getRandomColor() {
   return '#' + Math.floor(Math.random()*16777215).toString(16);
@@ -46,21 +47,22 @@ AFRAME.registerComponent('arrow-manager', {
         //const screenAccG = motionData.getScreenAdjustedAccelerationIncludingGravity() || {};
         const moved = {};
 
+
         if (screenAcc.x > ACC_THRESHOLD) {
           moved.right = true;
-        } else if (screenAcc.x < ACC_THRESHOLD) {
+        } else if (screenAcc.x < -ACC_THRESHOLD) {
           moved.left = true;
         }
 
         if (screenAcc.y > ACC_THRESHOLD) {
           moved.up  = true;
-        } else if (screenAcc.x < ACC_THRESHOLD) {
+        } else if (screenAcc.y < -ACC_THRESHOLD) {
           moved.down = true;
         }
 
         if (screenAcc.z > ACC_THRESHOLD) {
           moved.backward = true;
-        } else if (screenAcc.x < ACC_THRESHOLD) {
+        } else if (screenAcc.z < -ACC_THRESHOLD) {
           moved.forward = true;
         }
 
@@ -70,14 +72,24 @@ AFRAME.registerComponent('arrow-manager', {
         }
 
         const direction = currentArrow.components.arrow.getDirection();
-        console.info('Moved::', moved);
-        console.info('Arrow::', direction);
+
+        if (Object.keys(moved).length) {
+          console.info('Acceleration::', screenAcc);
+          console.info('Moved::', moved);
+          console.info('Arrow::', direction);
+        }
 
         if (moved.up && direction === 'UP' ||
             moved.down && direction === 'DOWN' ||
             moved.left && direction === 'LEFT' ||
             moved.right && direction === 'RIGHT'
         ) {
+          
+          this._sleeping = true;
+          setTimeout(() => {
+            this._sleeping = false;
+          }, TIMEOUT_MS);
+
           currentArrow.components.arrow.clear();
           this._arrows.pop();
 
@@ -86,7 +98,7 @@ AFRAME.registerComponent('arrow-manager', {
 
           if (elems.track) {
             elems.track.components.track.setSpeed(
-              elems.track.components.track.getSpeed() * 1.02
+              elems.track.components.track.getSpeed() * 1.03
             );
           }
         }
@@ -95,7 +107,7 @@ AFRAME.registerComponent('arrow-manager', {
   },
 
   _spawnArrow() {
-    if (this._arrows.length) {
+    if (this._arrows.length || this._sleeping) {
       return;
     }
 
@@ -113,8 +125,7 @@ AFRAME.registerComponent('arrow-manager', {
     if (!this._lastTime) {
       this._lastTime = time;
     }
-    if (this.data.enabled &&
-        (time - this._lastTime) > this.data.spawnFreqMs) {
+    if (this.data.enabled && (time - this._lastTime) > this.data.spawnFreqMs) {
       console.info('Generating arrow');
       this._lastTime = time;
       this._spawnArrow();

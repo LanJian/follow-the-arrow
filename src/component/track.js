@@ -39,8 +39,8 @@ AFRAME.registerComponent('track', {
     this.tick_light(this.el.querySelector('#light2'), z_translation);
     this.tick_light(this.el.querySelector('#light3'), z_translation);
 
-    this.tick_audio_bars(this.el.querySelector('#audio_bars1'), z_translation);
-    this.tick_audio_bars(this.el.querySelector('#audio_bars2'), z_translation);
+    //this.tick_audio_bars(this.el.querySelector('#audio_bars1'), z_translation);
+    //this.tick_audio_bars(this.el.querySelector('#audio_bars2'), z_translation);
     // this.tick_audio_bars(this.el.querySelector('#audio_bars3'), z_translation);
   },
 

@@ -97,7 +97,7 @@ AFRAME.registerComponent('arrow', {
     const segStart = this.el.sceneEl.querySelector(`#seg${idx}-start`);
     const segEnd = this.el.sceneEl.querySelector(`#seg${idx}-end`);
 
-    console.log('Seg' + idx + '::', segEnd.object3D.getWorldPosition().z, segStart.object3D.getWorldPosition().z);
+    // console.log('Seg' + idx + '::', segEnd.object3D.getWorldPosition().z, segStart.object3D.getWorldPosition().z);
     return {
       isBetween: segEnd.object3D.getWorldPosition().z > camPos.z > segStart.object3D.getWorldPosition().z,
       middle: (segEnd.object3D.getWorldPosition().z - segStart.object3D.getWorldPosition().z)/2 + segStart.object3D.getWorldPosition().z,
@@ -117,9 +117,10 @@ AFRAME.registerComponent('arrow', {
     const segInfo = this._segInfo(camPos, segIdx);
 
     if (segInfo.isBetween) {
-      console.log('Self.z::', this.el.parentEl.object3D.getWorldPosition());
+      //console.log('Self.z::', this.el.parentEl.object3D.getWorldPosition());
       if (camPos.z < selfPos.z) {
-        this._gameOver();
+        //this._gameOver();
+        console.log('game over');
       }
     }
   },
