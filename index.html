@@ -11,107 +11,121 @@
   <script src="src/component/arrow.js"></script>
   <script src="src/component/arrowManager.js"></script>
   <script src="src/component/track.js"></script>
+  <script src="src/component/random_sky.js"></script>
+  <script src="src/component/track.js"></script>
 </head>
 <body>
   <a-scene>
     <a-assets>
-      <img id="sky" src="sky.jpg">
+      <img id="sky1" src="29463770643_52c0ef3d76_k_d.jpg">
+      <img id="sky2" src="29485039074_33f3a92e81_k_d.jpg">
+      <img id="sky3" src="29532167094_0d5ed7b17e_k_d.jpg">
+      <img id="sky4" src="29580618383_f217461242_k_d.jpg">
+      <img id="sky5" src="29983056032_11ad60287d_k_d.jpg">
+      <img id="sky6" src="30105346071_bb4473c28b_k_d.jpg">
+      <img id="sky7" src="30157347116_1870679beb_k_d.jpg">
+      <img id="sky8" src="30177827355_a44902b5d1_k_d.jpg">
+      <img id="sky9" src="30358541445_c09870199f_k_d.jpg">
+      <img id="sky10" src="30372255125_8ea1e41d8f_k_d.jpg">
+      <img id="sky11" src="nanoscape.jpg">
+      <img id="sky12" src="sky.jpg">
       <a-mixin id="bar"
           geometry="primitive: box; width: 3.8; height: 1.5"
           material="color: black"
           scale-y-color="from: 10 60 10; to: 180 255 180; maxScale: 30">
       </a-mixin>
-      <audio id="song" src="regain_control.mp3" autoplay loop></audio>
+      <audio id="song" src="take_five.mp3" autoplay loop></audio>
     </a-assets>
     <!--New lights. -->
     <a-light type="ambient" color="#333"></a-light>
 
     <!-- Background. -->
-    <a-sky src="#sky"></a-sky>
+    <a-sky random_sky="12"></a-sky>
 
     <a-camera>
       <a-cursor color="#2E3A87"></a-cursor>
     </a-camera>
 
-    <!--<a-entity id="track" track="foo">-->
-      <!--<a-box id='segment1' color="#7F7" width="3" height="1" depth="100"-->
-             <!--position="0 0 100">-->
-        <!--<a-box color="#7F7" width="1" height="10" depth="1"-->
-               <!--position="1.5 0 50">-->
-        <!--</a-box>-->
-      <!--</a-box>-->
-      <!--<a-box id='segment2' color="#F77" width="3" height="1" depth="100"-->
-             <!--position="0 0 0">-->
-        <!--<a-box color="#F77" width="1" height="10" depth="1"-->
-               <!--position="-1.5 0 50">-->
-        <!--</a-box>-->
-      <!--</a-box>-->
-      <!--<a-box id='segment3' color="#77F" width="3" height="1" depth="100"-->
-             <!--position="0 0 -100">-->
-        <!--<a-box color="#77F" width="1" height="10" depth="1"-->
-               <!--position="1.5 0 50">-->
-        <!--</a-box>-->
-      <!--</a-box>-->
+    <a-entity arrow="color: blue; direction: UP" position="0 1 -10"></a-entity>
+    <a-entity id="track" track="foo">
+      <a-box id='segment1' color="#7F7" width="3" height="1" depth="100"
+             position="0 0 100">
+        <a-box color="#7F7" width="1" height="10" depth="1"
+               position="1.5 0 50">
+        </a-box>
+      </a-box>
+      <a-box id='segment2' color="#F77" width="3" height="1" depth="100"
+             position="0 0 0">
+        <a-box color="#F77" width="1" height="10" depth="1"
+               position="-1.5 0 50">
+        </a-box>
+      </a-box>
+      <a-box id='segment3' color="#77F" width="3" height="1" depth="100"
+             position="0 0 -100">
+        <a-box color="#77F" width="1" height="10" depth="1"
+               position="1.5 0 50">
+        </a-box>
+      </a-box>
 
-      <!--<a-light id='light1' type="point" color="#888" position="0 20 150" distance="150"></a-light>-->
-      <!--<a-light id='light2' type="point" color="#888" position="0 20 0" distance="150"></a-light>-->
-      <!--<a-light id='light3' type="point" color="#888" position="0 20 -150" distance="150"></a-light>-->
+      <a-light id='light1' type="point" color="#888" position="0 20 150" distance="150"></a-light>
+      <a-light id='light2' type="point" color="#888" position="0 20 0" distance="150"></a-light>
+      <a-light id='light3' type="point" color="#888" position="0 20 -150" distance="150"></a-light>
 
-      <!--<a-entity id="audio_bars1" position="0 0 150">-->
-        <!--<a-entity-->
-            <!--audioanalyser="src: #song; smoothingTimeConstant: 0.9"-->
-            <!--audioanalyser-levels-scale="max: 100; multiplier: 0.06"-->
-            <!--entity-generator="mixin: bar; num: 25"-->
-            <!--layout="type: line; margin: 4"-->
-            <!--position="-50 0 0"-->
-            <!--rotation="0 90 0">-->
-        <!--</a-entity>-->
-        <!--<a-entity-->
-            <!--audioanalyser="src: #song; smoothingTimeConstant: 0.9"-->
-            <!--audioanalyser-levels-scale="max: 100; multiplier: 0.06"-->
-            <!--entity-generator="mixin: bar; num: 25"-->
-            <!--layout="type: line; margin: 4"-->
-            <!--position="50 0 0"-->
-            <!--rotation="0 90 0">-->
-        <!--</a-entity>-->
-      <!--</a-entity>-->
-      <!--<a-entity id="audio_bars2" position="0 0 50">-->
-        <!--<a-entity-->
-            <!--audioanalyser="src: #song; smoothingTimeConstant: 0.9"-->
-            <!--audioanalyser-levels-scale="max: 100; multiplier: 0.06"-->
-            <!--entity-generator="mixin: bar; num: 25"-->
-            <!--layout="type: line; margin: 4"-->
-            <!--position="-50 0 0"-->
-            <!--rotation="0 90 0">-->
-        <!--</a-entity>-->
-        <!--<a-entity-->
-            <!--audioanalyser="src: #song; smoothingTimeConstant: 0.9"-->
-            <!--audioanalyser-levels-scale="max: 100; multiplier: 0.06"-->
-            <!--entity-generator="mixin: bar; num: 25"-->
-            <!--layout="type: line; margin: 4"-->
-            <!--position="50 0 0"-->
-            <!--rotation="0 90 0">-->
-        <!--</a-entity>-->
-      <!--</a-entity>-->
-      <!--<a-entity id="audio_bars3" position="0 0 -50">-->
-        <!--<a-entity-->
-            <!--audioanalyser="src: #song; smoothingTimeConstant: 0.9"-->
-            <!--audioanalyser-levels-scale="max: 100; multiplier: 0.06"-->
-            <!--entity-generator="mixin: bar; num: 25"-->
-            <!--layout="type: line; margin: 4"-->
-            <!--position="-50 0 0"-->
-            <!--rotation="0 90 0">-->
-        <!--</a-entity>-->
-        <!--<a-entity-->
-            <!--audioanalyser="src: #song; smoothingTimeConstant: 0.9"-->
-            <!--audioanalyser-levels-scale="max: 100; multiplier: 0.06"-->
-            <!--entity-generator="mixin: bar; num: 25"-->
-            <!--layout="type: line; margin: 4"-->
-            <!--position="50 0 0"-->
-            <!--rotation="0 90 0">-->
-        <!--</a-entity>-->
-      <!--</a-entity>-->
-    <!--</a-entity>-->
+      <a-entity id="audio_bars1" position="0 0 150">
+        <a-entity
+            audioanalyser="src: #song; smoothingTimeConstant: 0.9"
+            audioanalyser-levels-scale="max: 100; multiplier: 0.06"
+            entity-generator="mixin: bar; num: 25"
+            layout="type: line; margin: 4"
+            position="-50 0 0"
+            rotation="0 90 0">
+        </a-entity>
+        <a-entity
+            audioanalyser="src: #song; smoothingTimeConstant: 0.9"
+            audioanalyser-levels-scale="max: 100; multiplier: 0.06"
+            entity-generator="mixin: bar; num: 25"
+            layout="type: line; margin: 4"
+            position="50 0 0"
+            rotation="0 90 0">
+        </a-entity>
+      </a-entity>
+      <a-entity id="audio_bars2" position="0 0 50">
+        <a-entity
+            audioanalyser="src: #song; smoothingTimeConstant: 0.9"
+            audioanalyser-levels-scale="max: 100; multiplier: 0.06"
+            entity-generator="mixin: bar; num: 25"
+            layout="type: line; margin: 4"
+            position="-50 0 0"
+            rotation="0 90 0">
+        </a-entity>
+        <a-entity
+            audioanalyser="src: #song; smoothingTimeConstant: 0.9"
+            audioanalyser-levels-scale="max: 100; multiplier: 0.06"
+            entity-generator="mixin: bar; num: 25"
+            layout="type: line; margin: 4"
+            position="50 0 0"
+            rotation="0 90 0">
+        </a-entity>
+      </a-entity>
+      <a-entity id="audio_bars3" position="0 0 -50">
+        <a-entity
+            audioanalyser="src: #song; smoothingTimeConstant: 0.9"
+            audioanalyser-levels-scale="max: 100; multiplier: 0.06"
+            entity-generator="mixin: bar; num: 25"
+            layout="type: line; margin: 4"
+            position="-50 0 0"
+            rotation="0 90 0">
+        </a-entity>
+        <a-entity
+            audioanalyser="src: #song; smoothingTimeConstant: 0.9"
+            audioanalyser-levels-scale="max: 100; multiplier: 0.06"
+            entity-generator="mixin: bar; num: 25"
+            layout="type: line; margin: 4"
+            position="50 0 0"
+            rotation="0 90 0">
+        </a-entity>
+      </a-entity>
+    </a-entity>
 
     <a-entity position="0 2 -10" id="sampleArrow" arrow="color: blue; direction: UP"></a-entity>
     <a-entity position="0 2 -10" id="arrow-manager" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
