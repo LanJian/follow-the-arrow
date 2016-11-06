@@ -15,34 +15,77 @@
   <script src="src/component/random_sky.js"></script>
   <script src="src/component/collider-check.js"></script>
   <script src="src/component/player.js"></script>
+  <script src="src/component/random_animation.js"></script>
 </head>
 <body>
   <a-scene>
     <a-assets>
-      <img id="sky1" src="29463770643_52c0ef3d76_k_d.jpg">
-      <img id="sky2" src="29485039074_33f3a92e81_k_d.jpg">
-      <img id="sky3" src="29532167094_0d5ed7b17e_k_d.jpg">
-      <img id="sky4" src="29580618383_f217461242_k_d.jpg">
-      <img id="sky5" src="29983056032_11ad60287d_k_d.jpg">
-      <img id="sky6" src="30105346071_bb4473c28b_k_d.jpg">
-      <img id="sky7" src="30157347116_1870679beb_k_d.jpg">
-      <img id="sky8" src="30177827355_a44902b5d1_k_d.jpg">
-      <img id="sky9" src="30358541445_c09870199f_k_d.jpg">
-      <img id="sky10" src="30372255125_8ea1e41d8f_k_d.jpg">
-      <img id="sky11" src="nanoscape.jpg">
-      <img id="sky12" src="sky.jpg">
+      <!--<img id="sky1" src="29029161574_dcece3c64d_k_d.jpg">-->
+      <!--<img id="sky2" src="29029184644_a010f6c3ad_k_d.jpg">-->
+      <!--<img id="sky3" src="29029201364_6aa6e78adc_k_d.jpg">-->
+      <!--<img id="sky4" src="29029248844_1ceb534e85_k_d.jpg">-->
+      <!--<img id="sky5" src="29031102333_e787aad3a1_k_d.jpg">-->
+      <img id="sky1" src="images/29544527612_42e2dc90ea_k_d.jpg">
+      <img id="sky2" src="images/29574133521_1d7ec7c472_k_d.jpg">
+      <img id="sky3" src="images/29711482272_a9923be60a_k_d.jpg">
+      <img id="sky4" src="images/30358541445_c09870199f_k_d.jpg">
+      <img id="sky5" src="images/sky.jpg">
+
+      <!--<img id="sky6" src="29031104353_8455a61d09_k_d.jpg">-->
+      <!--<img id="sky7" src="29031132393_61517d61e9_k_d.jpg">-->
+      <!--<img id="sky8" src="29031162393_ee91ca229f_k_d.jpg">-->
+      <!--<img id="sky9" src="29196292533_4726ddc008_k_d.jpg">-->
+      <!--<img id="sky10" src="29257095213_01e8879b0f_k_d.jpg">-->
+      <!--<img id="sky11" src="29257337814_3da4a1bb1f_k_d.jpg">-->
+      <!--<img id="sky12" src="29364897870_ce49dc845f_k_d.jpg">-->
+      <!--<img id="sky13" src="29544526932_b5a46e3ffb_k_d.jpg">-->
+      <!--<img id="sky14" src="29544527612_42e2dc90ea_k_d.jpg">-->
+      <!--<img id="sky15" src="29574149851_28b8ec2407_k_d.jpg">-->
+      <!--<img id="sky16" src="29574190551_8d64ff0086_k_d.jpg">-->
+      <!--<img id="sky17" src="29620133816_c0489b45ab_k_d.jpg">-->
+      <!--<img id="sky18" src="29620142096_19ed4acbbf_k_d.jpg">-->
+      <!--<img id="sky19" src="29655647265_7bd1d1d0ad_k_d.jpg">-->
+      <!--<img id="sky20" src="29693902130_18156e07dc_k_d.jpg">-->
+      <!--<img id="sky21" src="29711482272_a9923be60a_k_d.jpg">-->
+      <!--<img id="sky22" src="29744969160_39f894bc4d_k_d.jpg">-->
+      <!--<img id="sky23" src="29760651082_a3b29bd62b_k_d.jpg">-->
+      <!--<img id="sky24" src="29786930606_28d83ada06_k_d.jpg">-->
+      <!--<img id="sky25" src="29798162281_f517d834d8_k_d.jpg">-->
+      <!--<img id="sky26" src="29840933285_6b7dcc29c8_k_d.jpg">-->
+      <!--<img id="sky27" src="29868395014_e6a0251e7b_k_d.jpg">-->
+      <!--<img id="sky28" src="29877250075_ce4f819d6f_k_d.jpg">-->
+      <!--<img id="sky29" src="29944906105_4427a01f42_k_d.jpg">-->
+      <!--<img id="sky30" src="29979247456_c26bf78023_k_d.jpg">-->
+      <!--<img id="sky31" src="30017110516_be9420a704_k_d.jpg">-->
+      <!--<img id="sky32" src="30049238005_c281cf9ec2_k_d.jpg">-->
+      <!--<img id="sky33" src="30177827355_a44902b5d1_k_d.jpg">-->
+      <!--<img id="sky34" src="30307124385_4ec5573d2b_k_d.jpg">-->
+      <!--<img id="sky35" src="30358541445_c09870199f_k_d.jpg">-->
+      <!--<img id="sky36" src="30372255125_8ea1e41d8f_k_d.jpg">-->
+      <!--<img id="sky37" src="30381202292_bdbf03ec7f_k_d.jpg">-->
+      <!--<img id="sky38" src="nanoscape.jpg">-->
+      <!--<img id="sky39" src="sky.jpg">-->
+      <!--<img id="sky40" src="29574133521_1d7ec7c472_k_d.jpg">-->
       <a-mixin id="bar"
-          geometry="primitive: box; width: 3.8; height: 1.5"
+          geometry="primitive: box; width: 3.8; height: 2"
           material="color: black"
           scale-y-color="from: 10 60 10; to: 180 255 180; maxScale: 30">
       </a-mixin>
-      <audio id="song" src="take_five.mp3" autoplay loop></audio>
+      <audio id="song" src="verloren.mp3" autoplay loop></audio>
     </a-assets>
     <!--New lights. -->
     <a-light type="ambient" color="#333"></a-light>
 
     <!-- Background. -->
-    <a-sky random_sky="12"></a-sky>
+    <a-sky random_sky="5" random_animation="10">
+      <a-animation
+          attribute="rotation"
+          dur="10000"
+          fill="forwards"
+          to="0 80 0"
+          >
+      </a-animation>
+    </a-sky>
 
 		<a-entity id="camera"
         class="camera"
@@ -53,23 +96,87 @@
       </a-cursor>
     </a-entity>
 
-    <a-entity class="track" id="track" track="speed: 1">
-      <a-box id='segment1' color="#7F7" width="3" height="1" depth="100" position="0 0 100">
+    <a-entity id="track" track="foo">
+      <a-box id='segment1' color="#7F7" width="3" height="1" depth="100"
+             position="0 0 100" opacity="0.8">
         <a-entity position="0 1.7 -10" id="arrow-manager-1" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
-        <a-box color="#7F7" width="1" height="10" depth="1"
-               position="1.5 0 50">
-        </a-box>
+        <a-entity position="0 0 50">
+          <a-circle color="#AFA" radius="3" opacity="0.9" position="0 0 0.1"></a-circle>
+          <a-circle color="#AFA" radius="4" opacity="0.6"></a-circle>
+        </a-entity>
+        <a-cylinder color="#7F7" radius="0.2" height="100"
+               position="1.4 0.5 0" rotation="90 0 0">
+        </a-cylinder>
+        <a-cylinder color="#AFA" radius="0.25" height="100"
+               position="1.4 0.5 0" rotation="90 0 0" opacity="0.8">
+        </a-cylinder>
+        <a-cylinder color="#BFB" radius="0.3" height="100"
+               position="1.4 0.5 0" rotation="90 0 0" opacity="0.6">
+        </a-cylinder>
+        <a-cylinder color="#7F7" radius="0.2" height="100"
+               position="-1.4 0.5 0" rotation="90 0 0">
+        </a-cylinder>
+        <a-cylinder color="#AFA" radius="0.25" height="100"
+               position="-1.4 0.5 0" rotation="90 0 0" opacity="0.8">
+        </a-cylinder>
+        <a-cylinder color="#BFB" radius="0.3" height="100"
+               position="-1.4 0.5 0" rotation="90 0 0" opacity="0.6">
+        </a-cylinder>
       </a-box>
-      <a-box id='segment2' color="#F77" width="3" height="1" depth="100" position="0 0 0">
+      <a-box id='segment2' color="#F77" width="3" height="1" depth="100"
+             position="0 0 0" opacity="0.8">
         <a-entity position="0 1.7 -10" id="arrow-manager-2" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
-        <a-box color="#F77" width="1" height="10" depth="1" position="-1.5 0 50">
-        </a-box>
+        <a-entity position="0 0 50">
+          <a-circle color="#FAA" radius="3" opacity="0.9" position="0 0 0.1"></a-circle>
+          <a-circle color="#FAA" radius="4" opacity="0.6"></a-circle>
+        </a-entity>
+        <a-cylinder color="#F77" radius="0.2" height="100"
+               position="1.4 0.5 0" rotation="90 0 0">
+        </a-cylinder>
+        <a-cylinder color="#FAA" radius="0.25" height="100"
+               position="1.4 0.5 0" rotation="90 0 0" opacity="0.8">
+        </a-cylinder>
+        <a-cylinder color="#FBB" radius="0.3" height="100"
+               position="1.4 0.5 0" rotation="90 0 0" opacity="0.6">
+        </a-cylinder>
+        <a-cylinder color="#F77" radius="0.2" height="100"
+               position="-1.4 0.5 0" rotation="90 0 0">
+        </a-cylinder>
+        <a-cylinder color="#FAA" radius="0.25" height="100"
+               position="-1.4 0.5 0" rotation="90 0 0" opacity="0.8">
+        </a-cylinder>
+        <a-cylinder color="#FBB" radius="0.3" height="100"
+               position="-1.4 0.5 0" rotation="90 0 0" opacity="0.6">
+        </a-cylinder>
       </a-box>
-      <a-box id='segment3' color="#77F" width="3" height="1" depth="100" position="0 0 -100">
+      <a-box id='segment3' color="#77F" width="3" height="1" depth="100"
+             position="0 0 -100" opacity="0.8">
+        <!--<a-box color="#77F" width="1" height="10" depth="1"-->
+               <!--position="1.5 0 50">-->
+        <!--</a-box>-->
         <a-entity position="0 1.7 -10" id="arrow-manager-3" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
-        <a-box color="#77F" width="1" height="10" depth="1"
-               position="1.5 0 50">
-        </a-box>
+        <a-entity position="0 0 50">
+          <a-circle color="#AAF" radius="3" opacity="0.9" position="0 0 0.1"></a-circle>
+          <a-circle color="#AAF" radius="4" opacity="0.6"></a-circle>
+        </a-entity>
+        <a-cylinder color="#77F" radius="0.2" height="100"
+               position="1.4 0.5 0" rotation="90 0 0">
+        </a-cylinder>
+        <a-cylinder color="#AAF" radius="0.25" height="100"
+               position="1.4 0.5 0" rotation="90 0 0" opacity="0.8">
+        </a-cylinder>
+        <a-cylinder color="#BBF" radius="0.3" height="100"
+               position="1.4 0.5 0" rotation="90 0 0" opacity="0.6">
+        </a-cylinder>
+        <a-cylinder color="#77F" radius="0.2" height="100"
+               position="-1.4 0.5 0" rotation="90 0 0">
+        </a-cylinder>
+        <a-cylinder color="#AAF" radius="0.25" height="100"
+               position="-1.4 0.5 0" rotation="90 0 0" opacity="0.8">
+        </a-cylinder>
+        <a-cylinder color="#BBF" radius="0.3" height="100"
+               position="-1.4 0.5 0" rotation="90 0 0" opacity="0.6">
+        </a-cylinder>
       </a-box>
 
       <a-light id='light1' type="point" color="#888" position="0 20 150" distance="150"></a-light>
