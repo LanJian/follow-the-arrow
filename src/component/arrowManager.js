@@ -21,7 +21,7 @@ function getArrowSpawnParams() {
   return `color: ${getRandomColor()}; direction: ${getRandomDir()}`;
 }
 
-AFRAME.registerComponent('arrowManager', {
+AFRAME.registerComponent('arrow-manager', {
   schema: {
     enabled: {
       type: 'bool',
@@ -38,24 +38,24 @@ AFRAME.registerComponent('arrowManager', {
     this._arrows = [];
 
     // register motion detector
-		//this._deviceMotion = FULLTILT.getDeviceMotion();
+    this._deviceMotion = FULLTILT.getDeviceMotion();
 
-		//deviceMotion.then(motionData => {
-			//motionData.listen(function() {
-				//// Display calculated screen-adjusted devicemotion
-				//const screenAcc = motionData.getScreenAdjustedAcceleration() || {};
-				//const screenAccG = motionData.getScreenAdjustedAccelerationIncludingGravity() || {};
-				//const screenRotRate = motionData.getScreenAdjustedRotationRate() || {};
+    this._deviceMotion.then(motionData => {
+      motionData.listen(() => {
+        // Display calculated screen-adjusted devicemotion
+        const screenAcc = motionData.getScreenAdjustedAcceleration() || {};
+        const screenAccG = motionData.getScreenAdjustedAccelerationIncludingGravity() || {};
+        const screenRotRate = motionData.getScreenAdjustedRotationRate() || {};
 
-        //console.info('ScreenAcc.X::', screenAcc.x);
-        //console.info('ScreenAcc.Y::', screenAcc.y);
-        //console.info('ScreenAcc.Z::', screenAcc.z);
+        console.info('ScreenAcc.X::', screenAcc.x);
+        console.info('ScreenAcc.Y::', screenAcc.y);
+        console.info('ScreenAcc.Z::', screenAcc.z);
 
-        //console.info('ScreenAccG.X::', screenAccG.x);
-        //console.info('ScreenAccG.Y::', screenAccG.y);
-        //console.info('ScreenAccG.Z::', screenAccG.z);
-			//});
-		//});
+        console.info('ScreenAccG.X::', screenAccG.x);
+        console.info('ScreenAccG.Y::', screenAccG.y);
+        console.info('ScreenAccG.Z::', screenAccG.z);
+      });
+    });
   },
 
   _spawnArrow() {
@@ -74,9 +74,9 @@ AFRAME.registerComponent('arrowManager', {
     if (!this._lastTime) {
       this._lastTime = time;
     }
-    if (this.data.enabled && (this._lastTime - time) > this.data.spawnFreqMs) {
+    if (this.data.enabled && (time - this._lastTime) > this.data.spawnFreqMs) {
       console.info('Generating arrow');
-      this._lastTime = time
+      this._lastTime = time;
       this._spawnArrow();
     }
   },
