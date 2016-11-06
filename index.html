@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <title>game101</title>
   <script src="https://aframe.io/releases/0.3.2/aframe.js"></script>
+  <!--<script src="src/component/audioanalyser/aframe-audioanalyser-component.min.js"></script>-->
+  <script src="src/component/audioanalyser/build.js"></script>
+  <script src="src/component/audioanalyser/audioanalyser-levels-scale.js"></script>
+  <script src="src/component/audioanalyser/scale-y-color.js"></script>
   <script src="src/component/arrow.js"></script>
   <script src="main.js"></script>
 </head>
@@ -11,19 +15,23 @@
   <a-scene>
     <a-assets>
       <img id="sky" src="sky.jpg">
+      <a-mixin id="bar"
+          geometry="primitive: box; width: 3.8; height: 1.5"
+          material="color: black"
+          scale-y-color="from: 10 60 10; to: 180 255 180; maxScale: 30">
+      </a-mixin>
+      <audio id="song" src="regain_control.mp3" autoplay loop></audio>
     </a-assets>
     <!--New lights. -->
     <a-light type="ambient" color="#333"></a-light>
+
     <!-- Background. -->
     <a-sky src="#sky"></a-sky>
+
     <a-camera>
       <a-cursor color="#2E3A87"></a-cursor>
-      <!--<a-animation attribute="position"-->
-          <!--repeat="indefinite"-->
-          <!--from="0 2 30"-->
-          <!--to="0 2 -30"-->
-          <!--dur="10000"></a-animation>-->
     </a-camera>
+
     <a-entity id="track" track="foo">
       <a-box id='segment1' color="#7F7" width="3" height="1" depth="100"
              position="0 0 100">
@@ -43,13 +51,70 @@
                position="1.5 0 50">
         </a-box>
       </a-box>
+
       <a-light id='light1' type="point" color="#888" position="0 20 150" distance="150"></a-light>
       <a-light id='light2' type="point" color="#888" position="0 20 0" distance="150"></a-light>
       <a-light id='light3' type="point" color="#888" position="0 20 -150" distance="150"></a-light>
-      <!--<a-box id='marker' color="#F77" width="6" height="1" depth="2"-->
-             <!--position="0 0 -100" track="foo">-->
-      <!--</a-box>-->
+
+      <a-entity id="audio_bars1" position="0 0 150">
+        <a-entity
+            audioanalyser="src: #song; smoothingTimeConstant: 0.9"
+            audioanalyser-levels-scale="max: 100; multiplier: 0.06"
+            entity-generator="mixin: bar; num: 25"
+            layout="type: line; margin: 4"
+            position="-50 0 0"
+            rotation="0 90 0">
+        </a-entity>
+        <a-entity
+            audioanalyser="src: #song; smoothingTimeConstant: 0.9"
+            audioanalyser-levels-scale="max: 100; multiplier: 0.06"
+            entity-generator="mixin: bar; num: 25"
+            layout="type: line; margin: 4"
+            position="50 0 0"
+            rotation="0 90 0">
+        </a-entity>
+      </a-entity>
+      <a-entity id="audio_bars2" position="0 0 50">
+        <a-entity
+            audioanalyser="src: #song; smoothingTimeConstant: 0.9"
+            audioanalyser-levels-scale="max: 100; multiplier: 0.06"
+            entity-generator="mixin: bar; num: 25"
+            layout="type: line; margin: 4"
+            position="-50 0 0"
+            rotation="0 90 0">
+        </a-entity>
+        <a-entity
+            audioanalyser="src: #song; smoothingTimeConstant: 0.9"
+            audioanalyser-levels-scale="max: 100; multiplier: 0.06"
+            entity-generator="mixin: bar; num: 25"
+            layout="type: line; margin: 4"
+            position="50 0 0"
+            rotation="0 90 0">
+        </a-entity>
+      </a-entity>
+      <a-entity id="audio_bars3" position="0 0 -50">
+        <a-entity
+            audioanalyser="src: #song; smoothingTimeConstant: 0.9"
+            audioanalyser-levels-scale="max: 100; multiplier: 0.06"
+            entity-generator="mixin: bar; num: 25"
+            layout="type: line; margin: 4"
+            position="-50 0 0"
+            rotation="0 90 0">
+        </a-entity>
+        <a-entity
+            audioanalyser="src: #song; smoothingTimeConstant: 0.9"
+            audioanalyser-levels-scale="max: 100; multiplier: 0.06"
+            entity-generator="mixin: bar; num: 25"
+            layout="type: line; margin: 4"
+            position="50 0 0"
+            rotation="0 90 0">
+        </a-entity>
+      </a-entity>
     </a-entity>
+
+    <a-circle color="#333" opacity="0.8" rotation="-90 0 0" radius="500"
+        roughness="1"></a-circle>
+
   </a-scene>
 </body>
 </html>
