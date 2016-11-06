@@ -9,7 +9,8 @@
   <script src="src/component/audioanalyser/audioanalyser-levels-scale.js"></script>
   <script src="src/component/audioanalyser/scale-y-color.js"></script>
   <script src="src/component/arrow.js"></script>
-  <script src="main.js"></script>
+  <script src="src/component/arrowManager.js"></script>
+  <script src="src/component/track.js"></script>
 </head>
 <body>
   <a-scene>
@@ -31,6 +32,8 @@
     <a-camera>
       <a-cursor color="#2E3A87"></a-cursor>
     </a-camera>
+
+    <a-entity id="arrowManager" arrowManager="enabled: true; spawnFreqMs: 2500"></a-entity>
 
     <a-entity id="track" track="foo">
       <a-box id='segment1' color="#7F7" width="3" height="1" depth="100"
@@ -112,9 +115,12 @@
       </a-entity>
     </a-entity>
 
-    <a-circle color="#333" opacity="0.8" rotation="-90 0 0" radius="500"
-        roughness="1"></a-circle>
-
+    <a-circle color="#333"
+      opacity="0.8"
+      rotation="-90 0 0"
+      radius="500"
+      roughness="1">
+    </a-circle>
   </a-scene>
 </body>
 </html>
