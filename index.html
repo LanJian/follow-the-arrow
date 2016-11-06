@@ -5,6 +5,7 @@
   <title>game101</title>
   <script src="https://aframe.io/releases/0.3.2/aframe.js"></script>
   <script src="vendor/fulltilt.min.js"></script>
+  <script src="vendor/aframe-text-component.min.js"></script>
 
   <script src="src/component/audioanalyser/build.js"></script>
   <script src="src/component/audioanalyser/audioanalyser-levels-scale.js"></script>
@@ -17,6 +18,7 @@
   <script src="src/component/player.js"></script>
   <script src="src/component/random_animation.js"></script>
   <script src="src/component/sphere-collider.js"></script>
+  <script src="src/component/label.js"></script>
 </head>
 <body>
   <a-scene>
@@ -95,6 +97,8 @@
       <a-cursor color="#2E3A87">
       </a-cursor>
     </a-box>
+
+    <a-entity id="score" text="text: Follow the Arrows" position="-2.5 3.5 -2" bevelEnabled="true"></a-entity>
 
     <a-entity class="track" id="track" track="speed: 1">
       <a-box id='segment1' color="#7F7" width="3" height="1" depth="100"

@@ -1,5 +1,5 @@
 const ACC_THRESHOLD = 3;
-const TIMEOUT_MS = 1.5e3;
+const TIMEOUT_MS = 2e3;
 
 function getRandomColor() {
   return '#' + Math.floor(Math.random()*16777215).toString(16);
@@ -34,6 +34,7 @@ AFRAME.registerComponent('arrow-manager', {
   },
   // lifecycle
   init() {
+    this._score = 0;
     this._lastTime = null;
     this._arrows = [];
 
@@ -95,6 +96,8 @@ AFRAME.registerComponent('arrow-manager', {
 
           // after clearing 1 arrow, increase speed
           const elems = this.el.sceneEl.getElementsByClassName('track');
+          this.el.sceneEl.querySelector('#score').setAttribute('text', `text: ${++this._score}; color: white`);
+          this.el.sceneEl.querySelector('#score').setAttribute('position', '-0.2 3.5 -2');
 
           if (elems.track) {
             elems.track.components.track.setSpeed(
