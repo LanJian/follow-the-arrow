@@ -65,21 +65,28 @@ AFRAME.registerComponent('arrow-manager', {
         }
 
         const currentArrow = this._arrows[0];
-        const direction = currentArrow.getDirection();
+        if (!currentArrow || !currentArrow.components || !currentArrow.components.arrow) {
+          return;
+        }
+
+        const direction = currentArrow.components.arrow.getDirection();
+        console.info('Moved::', moved);
+        console.info('Arrow::', direction);
 
         if (moved.up && direction === 'UP' ||
             moved.down && direction === 'DOWN' ||
             moved.left && direction === 'LEFT' ||
             moved.right && direction === 'RIGHT'
         ) {
-          currentArrow.clear();
+          currentArrow.components.arrow.clear();
           this._arrows.pop();
-          // after clearing 1 arrow,
-          // increase speed
+
+          // after clearing 1 arrow, increase speed
           const elems = this.el.sceneEl.getElementsByClassName('track');
+
           if (elems.track) {
             elems.track.components.track.setSpeed(
-              elems.track.components.track.getSpeed() * 1.01
+              elems.track.components.track.getSpeed() * 1.02
             );
           }
         }

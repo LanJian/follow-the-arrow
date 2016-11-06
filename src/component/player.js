@@ -1,7 +1,9 @@
 AFRAME.registerComponent('player', {
   dependencies: ['raycaster'],
   init() {
-    this.el.addEventListener('raycaster-intersection', (evt) => {
-    });
-  }
+  },
+  tick(time, timeDelta) {
+    // fix the camera position at every frame
+    this.el.object3D.position.set(0, 1.7, 5);
+  },
 });
