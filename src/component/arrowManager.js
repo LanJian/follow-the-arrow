@@ -104,10 +104,8 @@ AFRAME.registerComponent('arrow-manager', {
 
     const idCounter = this._arrows.length;
     entity.classList.add('arrow');
-    entity.setAttribute('raycaster', 'objects: .camera; far: 0.05; near: 0.01; recursive: false');
     entity.setAttribute('arrow', getArrowSpawnParams());
     entity.setAttribute('id', `arrow-${idCounter}`);
-    entity.setAttribute('collider-check', 'foo');
 
     this.el.appendChild(entity);
   },

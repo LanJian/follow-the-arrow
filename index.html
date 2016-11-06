@@ -16,6 +16,7 @@
   <script src="src/component/collider-check.js"></script>
   <script src="src/component/player.js"></script>
   <script src="src/component/random_animation.js"></script>
+  <script src="src/component/sphere-collider.js"></script>
 </head>
 <body>
   <a-scene>
@@ -86,19 +87,21 @@
       </a-animation>
     </a-sky>
 
-		<a-entity id="camera"
+		<a-box id="camera"
         class="camera"
         position="0 1.7 5"
 			  camera player
         look-controls>
       <a-cursor color="#2E3A87">
       </a-cursor>
-    </a-entity>
+    </a-box>
 
     <a-entity class="track" id="track" track="speed: 1">
       <a-box id='segment1' color="#7F7" width="3" height="1" depth="100"
              position="0 0 100" opacity="0.8">
-        <a-entity position="0 1.7 -10" id="arrow-manager-1" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
+        <a-box visible="false" id="seg1-start" position="0 0 -50"></a-box>
+        <a-box visible="false" id="seg1-end" position="0 0 50"></a-box>
+        <a-entity position="0 1.7 0" id="arrow-manager-1" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
         <a-entity position="0 0 50">
           <a-circle color="#AFA" radius="3" opacity="0.9" position="0 0 0.1"></a-circle>
           <a-circle color="#AFA" radius="4" opacity="0.6"></a-circle>
@@ -124,7 +127,9 @@
       </a-box>
       <a-box id='segment2' color="#F77" width="3" height="1" depth="100"
              position="0 0 0" opacity="0.8">
-        <a-entity position="0 1.7 -10" id="arrow-manager-2" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
+        <a-box visible="false" id="seg2-start" position="0 0 -50"></a-box>
+        <a-box visible="false" id="seg2-end" position="0 0 50"></a-box>
+        <a-entity position="0 1.7 0" id="arrow-manager-2" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
         <a-entity position="0 0 50">
           <a-circle color="#FAA" radius="3" opacity="0.9" position="0 0 0.1"></a-circle>
           <a-circle color="#FAA" radius="4" opacity="0.6"></a-circle>
@@ -148,12 +153,14 @@
                position="-1.4 0.5 0" rotation="90 0 0" opacity="0.6">
         </a-cylinder>
       </a-box>
-      <a-box id='segment3' color="#77F" width="3" height="1" depth="100"
-             position="0 0 -100" opacity="0.8">
+      <a-box id='segment3' color="#77F" width="3" height="1" depth="100" position="0 0 -100" opacity="0.8">
+        <a-box visible="false" id="seg3-start" position="0 0 -50"></a-box>
+        <a-box visible="false" id="seg3-end" position="0 0 50"></a-box>
+
         <!--<a-box color="#77F" width="1" height="10" depth="1"-->
                <!--position="1.5 0 50">-->
         <!--</a-box>-->
-        <a-entity position="0 1.7 -10" id="arrow-manager-3" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
+        <a-entity position="0 1.7 0" id="arrow-manager-3" arrow-manager="enabled: true; spawnFreqMs: 2500"></a-entity>
         <a-entity position="0 0 50">
           <a-circle color="#AAF" radius="3" opacity="0.9" position="0 0 0.1"></a-circle>
           <a-circle color="#AAF" radius="4" opacity="0.6"></a-circle>
