@@ -6,5 +6,49 @@
 </head>
 <body>
   <script src="https://aframe.io/releases/0.3.2/aframe.js"></script>
+  <script src="main.js"></script>
+  <a-scene>
+    <a-assets>
+      <img id="sky" src="sky.jpg">
+    </a-assets>
+    <!--New lights. -->
+    <a-light type="ambient" color="#333"></a-light>
+    <!-- Background. -->
+    <a-sky src="#sky"></a-sky>
+    <a-camera>
+      <a-cursor color="#2E3A87"></a-cursor>
+      <!--<a-animation attribute="position"-->
+          <!--repeat="indefinite"-->
+          <!--from="0 2 30"-->
+          <!--to="0 2 -30"-->
+          <!--dur="10000"></a-animation>-->
+    </a-camera>
+    <a-entity id="track" track="foo">
+      <a-box id='segment1' color="#7F7" width="3" height="1" depth="100"
+             position="0 0 100">
+        <a-box color="#7F7" width="1" height="10" depth="1"
+               position="1.5 0 50">
+        </a-box>
+      </a-box>
+      <a-box id='segment2' color="#F77" width="3" height="1" depth="100"
+             position="0 0 0">
+        <a-box color="#F77" width="1" height="10" depth="1"
+               position="-1.5 0 50">
+        </a-box>
+      </a-box>
+      <a-box id='segment3' color="#77F" width="3" height="1" depth="100"
+             position="0 0 -100">
+        <a-box color="#77F" width="1" height="10" depth="1"
+               position="1.5 0 50">
+        </a-box>
+      </a-box>
+      <a-light id='light1' type="point" color="#888" position="0 20 150" distance="150"></a-light>
+      <a-light id='light2' type="point" color="#888" position="0 20 0" distance="150"></a-light>
+      <a-light id='light3' type="point" color="#888" position="0 20 -150" distance="150"></a-light>
+      <!--<a-box id='marker' color="#F77" width="6" height="1" depth="2"-->
+             <!--position="0 0 -100" track="foo">-->
+      <!--</a-box>-->
+    </a-entity>
+  </a-scene>
 </body>
 </html>
