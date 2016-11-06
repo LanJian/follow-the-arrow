@@ -63,16 +63,12 @@ AFRAME.registerComponent('arrow', {
     const { direction } = this.data;
 
 	  // Set color with material.
-		const material = new THREE.MeshBasicMaterial({
-      color: this.data.color,
-    });
+		const material = new THREE.MeshBasicMaterial({ color: this.data.color, });
 
     const lineMesh = new THREE.Mesh(new THREE.BoxGeometry(0.1, LINE_HEIGHT, 0));
     const capMeshL = new THREE.Mesh(new THREE.BoxGeometry(0.1, CAP_HEIGHT, 0));
     const capMeshR = new THREE.Mesh(new THREE.BoxGeometry(0.1, CAP_HEIGHT, 0));
-    this._positionCap(direction, {
-      capMeshL, capMeshR
-    });
+    this._positionCap(direction, { capMeshL, capMeshR });
 
     const merged = new THREE.Geometry();
     merged.merge(lineMesh.geometry, lineMesh.matrix);
@@ -93,7 +89,8 @@ AFRAME.registerComponent('arrow', {
     const mesh = this._getArrow();
 		this.el.setObject3D('mesh', mesh);
   },
+
+  getDirection() {
+    return this.data.direction;
+  },
 });
-
-console.log('injected');
-
