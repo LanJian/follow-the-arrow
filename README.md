@@ -6,7 +6,7 @@ https://lanjian.github.io/follow-the-arrow/
 
 ## How to Play
 
-Visit the game link with a VR capable device(your phone with Google cardboard or equivelent works!).
+Visit the game link with a VR capable device. *Your phone with Google cardboard or equivelent works!*
 
 Turn your head in the direction of the arrows to score points.
 
